@@ -1,0 +1,11 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .bots import translate_bot
+
+class TranslateAPIView(APIView):
+    def post(self, request):
+        user_message = request.data.get("message")
+
+        response = translate_bot(user_message)
+        
+        return Response({"messages": response})
